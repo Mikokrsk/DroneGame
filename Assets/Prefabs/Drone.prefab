@@ -27,12 +27,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788012646524665485}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.504, z: 0.369}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.05, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7465853541843151271}
+  m_Father: {fileID: 1248619888218911000}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!20 &4777368726253452057
 Camera:
@@ -108,6 +108,7 @@ MonoBehaviour:
   _cameraRotationSpeed: 5
   smoothSpeed: 5
   targetRotationX: 0
+  _droneTransform: {fileID: 7465853541843151271}
 --- !u!1 &1035275348894656286
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ Transform:
   m_GameObject: {fileID: 1035275348894656286}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.654787, y: 9.773015, z: -16.27897}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -185,11 +186,10 @@ Transform:
   m_GameObject: {fileID: 4009769271611105465}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.654787, y: 14.943015, z: -16.27897}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7973074596515533130}
   - {fileID: 8692386873022967451}
   m_Father: {fileID: 1248619888218911000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -282,7 +282,7 @@ MonoBehaviour:
   _followCamera: {fileID: 3736899322915973683}
   _horizontalSpeed: 10
   _verticalSpeed: 10
-  _droneRotationSpeed: 5
+  _droneRotationSpeed: 65
 --- !u!143 &2245160436092990150
 CharacterController:
   m_ObjectHideFlags: 0
@@ -338,6 +338,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7973074596515533130}
   - {fileID: 7465853541843151271}
   - {fileID: 2539640813477201559}
   m_Father: {fileID: 0}

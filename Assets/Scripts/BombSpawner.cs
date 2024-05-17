@@ -21,9 +21,18 @@ public class BombSpawner : MonoBehaviour
 
     public void SpawnBomb()
     {
-        var bombSpawnPosition = _droneSpawnPositionTransform;
+        var bombSpawnPosition = _droneSpawnPositionTransform.position;
         // bombSpawnPosition.position = _droneSpawnPositionTransform.localPosition;
-        Instantiate(_bombPrefab, _droneSpawnPositionTransform.position, _bombPrefab.transform.rotation, transform);
+        //  Instantiate(_bombPrefab, bombSpawnPosition, _bombPrefab.transform.rotation, transform);
+
+        // Create random Euler angles for rotation
+        float randomX = Random.Range(0f, 360f);
+        float randomY = Random.Range(0f, 360f);
+        float randomZ = Random.Range(0f, 360f);
+
+        // Create quaternion using Euler angles
+        Quaternion randomRotation = Quaternion.Euler(randomX, randomY, randomZ);
+        Instantiate(_bombPrefab, bombSpawnPosition, randomRotation, transform);
     }
 }
 
