@@ -10,6 +10,7 @@ public class Bomb : MonoBehaviour
     // [SerializeField] private bool _isExplosioned = false;
     [SerializeField] private SphereExploder _sphereExploder;
     [SerializeField] private GameObject _VolumetricObject;
+    [SerializeField] private Animator _animator;
     /*    private void OnCollisionEnter(Collision collision)
         {
             if (!_isExplosioned)
@@ -21,6 +22,7 @@ public class Bomb : MonoBehaviour
     private void OnEnable()
     {
         Invoke("Exploxion", _explosionDelay);
+        _animator.SetTrigger("DisconnectingGrenadeFittingTrigger");
     }
 
     private void Exploxion()
