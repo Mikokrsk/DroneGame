@@ -92,7 +92,12 @@ public class SphereExploder : Exploder
             if (hit.rigidbody != null)
             {
                 hit.rigidbody.AddForceAtPosition(power * Time.deltaTime * testRay.direction / probeCount, hit.point);
-                estimatedRadius /= 2;
+                // estimatedRadius /= 2;
+                var bombScript = hit.rigidbody.GetComponent<Bomb>();
+                if (bombScript != null)
+                {
+                    bombScript.StartExplosion();
+                }
             }
             else
             {

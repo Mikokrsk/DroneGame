@@ -4,37 +4,53 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _rb;
-    [SerializeField] private float _destroyDelay = 1f;
-    [SerializeField] private float _explosionDelay = 1f;
-    // [SerializeField] private bool _isExplosioned = false;
-    [SerializeField] private SphereExploder _sphereExploder;
-    [SerializeField] private GameObject _VolumetricObject;
-    [SerializeField] private Animator _animator;
-    /*    private void OnCollisionEnter(Collision collision)
-        {
-            if (!_isExplosioned)
-            {
-                Exploxion()
-            }
-        }*/
+    [SerializeField] protected Rigidbody _rb;
+    [SerializeField] protected float _destroyDelay = 1f;
+    [SerializeField] protected float _explosionDelay = 1f;
+    [SerializeField] protected SphereExploder _sphereExploder;
+    [SerializeField] protected GameObject _VolumetricObject;
+    [SerializeField] protected Animator _animator;
+    public bool isActive;
 
-    private void OnEnable()
+    public virtual void StartExplosion()
     {
-        Invoke("Exploxion", _explosionDelay);
-        _animator.SetTrigger("DisconnectingGrenadeFittingTrigger");
+        if (isActive)
+        {
+            _explosionDelay = Random.Range(0.1f, _explosionDelay);
+        }
+        else
+        {
+            isActive = true;
+        }
     }
 
-    private void Exploxion()
+    private void Update()
+    {
+        if (!isActive)
+        {
+            return;
+        }
+
+        if (_explosionDelay > 0)
+        {
+            _explosionDelay -= Time.deltaTime;
+        }
+        else
+        {
+            isActive = false;
+            Explosion();
+        }
+    }
+
+    protected virtual void Explosion()
     {
         _sphereExploder.StartExploded();
         Destroy(_rb);
-        // GetComponent<MeshRenderer>().enabled = false;
         Instantiate(_VolumetricObject, transform);
         Invoke("DestroyBomb", _destroyDelay);
     }
 
-    private void DestroyBomb()
+    protected virtual void DestroyBomb()
     {
         Destroy(gameObject);
     }

@@ -32,7 +32,8 @@ public class BombSpawner : MonoBehaviour
 
         // Create quaternion using Euler angles
         Quaternion randomRotation = Quaternion.Euler(randomX, randomY, randomZ);
-        Instantiate(_bombPrefab, bombSpawnPosition, randomRotation, transform);
+        var bomb = Instantiate(_bombPrefab, bombSpawnPosition, randomRotation, transform);
+        bomb.GetComponent<Bomb>().StartExplosion();
     }
 }
 
