@@ -8,7 +8,7 @@ public class FollowCamera : MonoBehaviour
     [SerializeField] private float smoothSpeed = 5f;
     [SerializeField] private float targetRotationX;
 
-    [SerializeField] private Transform _droneTransform;
+   // [SerializeField] private Transform _droneTransform;
     private void Update()
     {
         CameraRotation();
@@ -16,8 +16,8 @@ public class FollowCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = _droneTransform.position;
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, _droneTransform.eulerAngles.y, 0);
+      //  transform.position = _droneTransform.position;
+      //  transform.eulerAngles = new Vector3(transform.eulerAngles.x, _droneTransform.eulerAngles.y, 0);
     }
 
     public void CameraRotation()
