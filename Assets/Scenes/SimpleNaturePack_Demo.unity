@@ -4426,6 +4426,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166166788}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &178077195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2342982818515376250, guid: 8036e660bcc07bf4b9ae64c95c0fcbde, type: 3}
+  m_PrefabInstance: {fileID: 1324104323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &184074057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10516,6 +10521,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4661435515762813124, guid: e289bf5debb17f6459818c207d781953, type: 3}
   m_PrefabInstance: {fileID: 586800468}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &587447324 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8559276488050878526, guid: 8036e660bcc07bf4b9ae64c95c0fcbde, type: 3}
+  m_PrefabInstance: {fileID: 1324104323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &597721375
 GameObject:
   m_ObjectHideFlags: 0
@@ -20360,10 +20376,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7170593034794595184, guid: 8036e660bcc07bf4b9ae64c95c0fcbde, type: 3}
-      propertyPath: _followCamera
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7242477364121240159, guid: 8036e660bcc07bf4b9ae64c95c0fcbde, type: 3}
       propertyPath: m_Name
       value: Drone (1)
@@ -20373,6 +20385,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8036e660bcc07bf4b9ae64c95c0fcbde, type: 3}
+--- !u!114 &1325098723 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8562299202426808637, guid: 8036e660bcc07bf4b9ae64c95c0fcbde, type: 3}
+  m_PrefabInstance: {fileID: 1324104323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1337628949
 GameObject:
   m_ObjectHideFlags: 0
@@ -24951,6 +24974,7 @@ GameObject:
   - component: {fileID: 1629204421}
   - component: {fileID: 1629204420}
   - component: {fileID: 1629204419}
+  - component: {fileID: 1629204423}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -24973,6 +24997,11 @@ MonoBehaviour:
   _cameraRotationSpeed: 5
   smoothSpeed: 5
   targetRotationX: 0
+  _droneCameraBody: {fileID: 178077195}
+  _droneMainCamera: {fileID: 1325098723}
+  _droneSecondCamera: {fileID: 587447324}
+  _hightCameraPriority: 1
+  _lowCameraPriority: 0
 --- !u!81 &1629204420
 AudioListener:
   m_ObjectHideFlags: 0
@@ -25014,7 +25043,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -25040,13 +25069,47 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629204418}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7238709, z: 0, w: 0.68993556}
-  m_LocalPosition: {x: 0, y: 36, z: 0.676}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.000000029802322, y: 35.9625, z: 0.83074987}
   m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 92.75, z: 0}
+--- !u!114 &1629204423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629204418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1640699230
 PrefabInstance:
   m_ObjectHideFlags: 0
