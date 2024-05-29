@@ -19,16 +19,23 @@ public class Turret : MonoBehaviour
     [SerializeField] GameObject _shootLight;
     [SerializeField] float _shootDelay;
     [SerializeField] float _lightDelay;
+    [SerializeField] float _reloadDelay;
+    [SerializeField] float _reloadDelayMax;
     [SerializeField] float _rotateBarrelsDelay;
     [SerializeField] float _rotateSpeed;
-
+    [SerializeField] GameObject _enemy;
     private Coroutine shootingCoroutine;
     private Coroutine rotatingCoroutine;
 
 
     private void Update()
     {
-        if (isFight && _countBullets == 0)
+        if (_reloadDelay > 0)
+        {
+            _reloadDelay -= Time.deltaTime;
+        }
+
+        if (isFight && _countBullets == 0 && _reloadDelay <= 0)
         {
             isFight = false;
             if (shootingCoroutine == null && rotatingCoroutine == null)
@@ -39,7 +46,6 @@ public class Turret : MonoBehaviour
         }
     }
 
-
     IEnumerator Shooting()
     {
         while (_countBullets < _maxCountBullets)
@@ -49,8 +55,9 @@ public class Turret : MonoBehaviour
                                                   _turretBase.transform.rotation.eulerAngles.y,
                                                   0);
             var bullet = Instantiate(_bulletPrefab, _bulletSpawnPosition.position, bulletRotation, _bulletsObject);
-
+            bullet.GetComponent<Bullet>().enemy = _enemy;
             bullet.GetComponent<Rigidbody>().AddForce(_bulletSpawnPosition.forward * _bulletForce, ForceMode.Impulse);
+
 
             _shootLight.SetActive(true);
             yield return new WaitForSeconds(_lightDelay);
@@ -85,5 +92,34 @@ public class Turret : MonoBehaviour
             StopCoroutine(rotatingCoroutine);
             rotatingCoroutine = null;
         }
+
+        _reloadDelay = _reloadDelayMax;
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        var enemy = other.gameObject;
+
+        if (enemy == _enemy)
+        {
+            AimAtTarget(_enemy.transform.position);
+        }
+    }
+
+    private void AimAtTarget(Vector3 targetPosition)
+    {
+        Vector3 directionToEnemy = targetPosition - _turretBase.position;
+
+        Vector3 directionToEnemyOnPlane = new Vector3(directionToEnemy.x, 0, directionToEnemy.z);
+        float turretRotationY = Mathf.Atan2(directionToEnemyOnPlane.x, directionToEnemyOnPlane.z) * Mathf.Rad2Deg;
+
+        Vector3 directionToEnemyFromBarrel = targetPosition - _minigunBarrels.position;
+        float distanceOnXZPlane = new Vector3(directionToEnemyFromBarrel.x, 0, directionToEnemyFromBarrel.z).magnitude;
+        float barrelRotationX = Mathf.Atan2(directionToEnemyFromBarrel.y, distanceOnXZPlane) * Mathf.Rad2Deg;
+
+        _turretBase.rotation = Quaternion.Euler(0, turretRotationY, 0);
+        _minigunBarrelBase.localRotation = Quaternion.Euler(-barrelRotationX, 0, 0);
+        isFight = true;
+    }
+
 }
