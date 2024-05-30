@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _speed;
     [SerializeField] private float _bulletLiveTime;
+    [SerializeField] private float _bulletDamage;
     public GameObject enemy;
 
     private void OnEnable()
@@ -16,10 +17,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == enemy)
+        var healthController = collision.gameObject.GetComponentInChildren<HealthController>();
+        if (healthController != null)
         {
-            Debug.Log("Drone");
-            //  _enemy.SetActive(false);
+            healthController.TakeDamage(_bulletDamage);
             Destroy(gameObject);
         }
     }

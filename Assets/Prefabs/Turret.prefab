@@ -154,6 +154,8 @@ MonoBehaviour:
   _rotateBarrelsDelay: 0.01
   _rotateSpeed: 1500
   _enemy: {fileID: 0}
+  _bulletSpreadXMax: 3
+  _bulletSpreadYMax: 3
 --- !u!65 &4593972647670741410
 BoxCollider:
   m_ObjectHideFlags: 0

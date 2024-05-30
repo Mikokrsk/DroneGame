@@ -153,4 +153,5 @@ MonoBehaviour:
   _rb: {fileID: 5222872211676876650}
   _speed: 100
   _bulletLiveTime: 10
+  _bulletDamage: 1
   enemy: {fileID: 0}

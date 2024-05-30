@@ -19,7 +19,7 @@ public class Grenade : Bomb
 
     protected override void Explosion()
     {
-        _sphereExploder.StartExploded();
+        _sphereExploder.StartExploded(_explosionDamage);
         Destroy(_rb);
         Instantiate(_VolumetricObject, transform);
         Invoke("DestroyBomb", _destroyDelay);
