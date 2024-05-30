@@ -24,6 +24,8 @@ public class Turret : MonoBehaviour
     [SerializeField] float _rotateBarrelsDelay;
     [SerializeField] float _rotateSpeed;
     [SerializeField] GameObject _enemy;
+    [SerializeField] float _bulletSpreadXMax;
+    [SerializeField] float _bulletSpreadYMax;
     private Coroutine shootingCoroutine;
     private Coroutine rotatingCoroutine;
 
@@ -51,12 +53,16 @@ public class Turret : MonoBehaviour
         while (_countBullets < _maxCountBullets)
         {
             _countBullets++;
-            var bulletRotation = Quaternion.Euler(_minigunBarrelBase.transform.rotation.eulerAngles.x + 90,
-                                                  _turretBase.transform.rotation.eulerAngles.y,
-                                                  0);
+
+            var bulletSpreadX = Random.Range(-_bulletSpreadXMax, _bulletSpreadXMax);
+            var bulletSpreadY = Random.Range(-_bulletSpreadYMax, _bulletSpreadYMax);
+
+            var bulletRotation = Quaternion.Euler(_minigunBarrelBase.transform.rotation.eulerAngles.x + 90 + bulletSpreadX,
+                                                  _turretBase.transform.rotation.eulerAngles.y + bulletSpreadY, 0);
+
             var bullet = Instantiate(_bulletPrefab, _bulletSpawnPosition.position, bulletRotation, _bulletsObject);
             bullet.GetComponent<Bullet>().enemy = _enemy;
-            bullet.GetComponent<Rigidbody>().AddForce(_bulletSpawnPosition.forward * _bulletForce, ForceMode.Impulse);
+            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.up * _bulletForce, ForceMode.Impulse);
 
 
             _shootLight.SetActive(true);

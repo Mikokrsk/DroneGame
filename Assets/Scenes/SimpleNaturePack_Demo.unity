@@ -32037,6 +32037,14 @@ PrefabInstance:
       propertyPath: _enemy
       value: 
       objectReference: {fileID: 1758896822}
+    - target: {fileID: 6099627307611163627, guid: 03851096fc984944abbbca5d21dd61e2, type: 3}
+      propertyPath: _bulletSpreadXMax
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099627307611163627, guid: 03851096fc984944abbbca5d21dd61e2, type: 3}
+      propertyPath: _bulletSpreadYMax
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6219228905556985145, guid: 03851096fc984944abbbca5d21dd61e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.164595
