@@ -5,6 +5,8 @@ using NUnit.Framework;
 
 public class SphereExploder : Exploder
 {
+    [SerializeField] int _maxDepth;
+    private float damage;
     /*    public override IEnumerator explode()
         {
             exploded = true;
@@ -75,7 +77,7 @@ public class SphereExploder : Exploder
     {
         Vector3 probeDir = Random.onUnitSphere;
         Ray testRay = new Ray(transform.position, probeDir);
-        shootRay(testRay, radius);
+        shootRay(testRay, radius, 0, _maxDepth);
     }
 
 
@@ -97,6 +99,13 @@ public class SphereExploder : Exploder
                 if (bombScript != null)
                 {
                     bombScript.StartExplosion();
+                }
+
+                var healthController = hit.collider.GetComponent<HealthController>();
+
+                if (healthController != null)
+                {
+                    healthController.TakeDamage(damage);
                 }
             }
             else
@@ -120,10 +129,11 @@ public class SphereExploder : Exploder
         }
     }
 
-    public void StartExploded()
+    public void StartExploded(float damage)
     {
         if (!exploded)
         {
+            this.damage = damage;
             power *= 10000;
             exploded = true;
             explosionTime = 2;
