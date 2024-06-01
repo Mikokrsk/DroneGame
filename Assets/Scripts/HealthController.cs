@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
     [SerializeField] float health;
     [SerializeField] float maxHealth;
+    [SerializeField] Slider _healthSlider;
+    [SerializeField] UnityEvent deathEvent;
 
     private void Start()
     {
         health = maxHealth;
+        _healthSlider.value = health;
+        _healthSlider.maxValue = maxHealth;
     }
 
     public float GetHealth()
@@ -21,6 +27,8 @@ public class HealthController : MonoBehaviour
     {
         health -= damage;
 
+        _healthSlider.value = health;
+
         if (health <= 0)
         {
             Death();
@@ -30,5 +38,7 @@ public class HealthController : MonoBehaviour
     private void Death()
     {
         Debug.Log($"{gameObject.name} - Death");
+        _healthSlider.gameObject.SetActive(false);
+        deathEvent.Invoke();
     }
 }
