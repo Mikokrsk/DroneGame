@@ -61,16 +61,21 @@ public class SphereExploder : Exploder
                 component.onExplosionStarted(this);
             }
         }
-        while (explosionTime > 0)
+        /*        while (explosionTime > 0)
+                {
+                    disableCollider();
+                    for (int i = 0; i < probeCount; i++)
+                    {
+                        shootFromCurrentPosition();
+                    }
+                    enableCollider();
+                    yield return new WaitForFixedUpdate();
+                }*/
+        for (int i = 0; i < probeCount; i++)
         {
-            disableCollider();
-            for (int i = 0; i < probeCount; i++)
-            {
-                shootFromCurrentPosition();
-            }
-            enableCollider();
-            yield return new WaitForFixedUpdate();
+            shootFromCurrentPosition();
         }
+        yield return new WaitForFixedUpdate();
     }
 
     protected override void shootFromCurrentPosition()
@@ -91,6 +96,13 @@ public class SphereExploder : Exploder
         RaycastHit hit;
         if (Physics.Raycast(testRay, out hit, estimatedRadius))
         {
+            var healthController = hit.collider.GetComponent<HealthController>();
+
+            if (healthController != null)
+            {
+                healthController.TakeDamage(damage);
+            }
+
             if (hit.rigidbody != null)
             {
                 hit.rigidbody.AddForceAtPosition(power * Time.deltaTime * testRay.direction / probeCount, hit.point);
@@ -101,33 +113,28 @@ public class SphereExploder : Exploder
                     bombScript.StartExplosion();
                 }
 
-                var healthController = hit.collider.GetComponent<HealthController>();
 
-                if (healthController != null)
-                {
-                    healthController.TakeDamage(damage);
-                }
             }
-            else
-            {
-                Vector3 reflectVec = Random.onUnitSphere;
-                if (Vector3.Dot(reflectVec, hit.normal) < 0)
-                {
-                    reflectVec *= -1;
-                }
-                Ray emittedRay = new Ray(hit.point, reflectVec);
-                shootRay(emittedRay, estimatedRadius - hit.distance, depth + 1, maxDepth);
-            }
+            /*            else
+                        {
+                            Vector3 reflectVec = Random.onUnitSphere;
+                            if (Vector3.Dot(reflectVec, hit.normal) < 0)
+                            {
+                                reflectVec *= -1;
+                            }
+                            Ray emittedRay = new Ray(hit.point, reflectVec);
+                            shootRay(emittedRay, estimatedRadius - hit.distance, depth + 1, maxDepth);
+                        }*/
         }
     }
-
-    private void Update()
-    {
-        if (explosionTime > 0)
+    /*
+        private void Update()
         {
-            explosionTime -= Time.deltaTime;
-        }
-    }
+            if (explosionTime > 0)
+            {
+                explosionTime -= Time.deltaTime;
+            }
+        }*/
 
     public void StartExploded(float damage)
     {
@@ -136,7 +143,7 @@ public class SphereExploder : Exploder
             this.damage = damage;
             power *= 10000;
             exploded = true;
-            explosionTime = 2;
+            //   explosionTime = 2;
             StartCoroutine("explode");
         }
     }

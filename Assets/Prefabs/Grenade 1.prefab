@@ -101,7 +101,7 @@ MonoBehaviour:
   _rb: {fileID: 6585482774208081566}
   _destroyDelay: 1
   _explosionDelay: 3
-  _explosionDamage: 0.01
+  _explosionDamage: 1
   _sphereExploder: {fileID: 4087131374727247171}
   _VolumetricObject: {fileID: 6590311878096886646, guid: 4330b4cbc9520fe419f7e7aa014b932c, type: 3}
   _animator: {fileID: 1557836920839823665}
@@ -121,8 +121,8 @@ MonoBehaviour:
   explosionTime: 3
   randomizeExplosionTime: 1
   radius: 5
-  power: 30
-  probeCount: 250
+  power: 1000
+  probeCount: 100
   explodeDuration: 5
   exploded: 0
   _maxDepth: 1
