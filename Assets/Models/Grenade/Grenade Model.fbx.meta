@@ -3,7 +3,22 @@ guid: 2d6ee43a8c250944593fcaff9e09f931
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aluminium
+    second: {fileID: 2100000, guid: a118bbd1e87b6674ea96b1c5af803569, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Green_Metal
+    second: {fileID: 2100000, guid: 6be88cdc682d10547b85c13cee8d7749, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Greey_Methal
+    second: {fileID: 2100000, guid: 0c0f71d961ee05f40b36a7c01bad7d99, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
