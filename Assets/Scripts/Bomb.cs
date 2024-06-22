@@ -13,6 +13,14 @@ public class Bomb : MonoBehaviour
     [SerializeField] protected Animator _animator;
     public bool isActive;
 
+    private void Awake()
+    {
+        if (_rb == null)
+        {
+            _rb = GetComponent<Rigidbody>();
+        }
+    }
+
     public virtual void StartExplosion()
     {
         if (isActive)
@@ -53,6 +61,6 @@ public class Bomb : MonoBehaviour
 
     protected virtual void DestroyBomb()
     {
-        Destroy(gameObject);
+        Destroy(gameObject.gameObject);
     }
 }
