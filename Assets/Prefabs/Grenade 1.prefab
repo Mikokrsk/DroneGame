@@ -126,6 +126,7 @@ MonoBehaviour:
   explodeDuration: 5
   exploded: 0
   _maxDepth: 1
+  _penetrationDepth: 0.5
 --- !u!1001 &1807683326901377562
 PrefabInstance:
   m_ObjectHideFlags: 0

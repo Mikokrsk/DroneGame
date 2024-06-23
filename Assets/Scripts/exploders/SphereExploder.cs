@@ -6,6 +6,7 @@ using NUnit.Framework;
 public class SphereExploder : Exploder
 {
     [SerializeField] int _maxDepth;
+    [SerializeField] float _penetrationDepth;
     private float damage;
     /*    public override IEnumerator explode()
         {
@@ -83,11 +84,11 @@ public class SphereExploder : Exploder
             return;
         }
 
-        Debug.DrawRay(testRay.origin, testRay.direction * estimatedRadius, Color.green, 5f);
         RaycastHit hit;
+
         if (Physics.Raycast(testRay, out hit, estimatedRadius))
         {
-
+            Debug.DrawRay(testRay.origin, testRay.direction * hit.distance, Color.green, 5f);
             var healthController = hit.collider.GetComponent<HealthController>();
 
             if (healthController != null)
@@ -119,9 +120,39 @@ public class SphereExploder : Exploder
                             shootRay(emittedRay, estimatedRadius - hit.distance, depth + 1, maxDepth);
                         }*/
         }
-        shootRay(testRay, estimatedRadius, depth + 1, maxDepth);
+
+        //  shootRay(testRay, estimatedRadius, depth + 1, maxDepth);
+        PenetrationRay(hit.point, testRay.direction, hit.collider);
     }
 
+    private void PenetrationRay(Vector3 hitPoint, Vector3 direction, Collider collider)
+    {
+        Vector3 nextOrigin = hitPoint + direction.normalized * 0.01f;
+        Ray nextRay = new Ray(nextOrigin, direction);
+
+
+        RaycastHit hit;
+        if (Physics.Raycast(nextRay, out hit, _penetrationDepth))
+        {
+            Debug.DrawRay(nextRay.origin, nextRay.direction * hit.distance, Color.red, 5f);
+            var healthController = hit.collider.GetComponent<HealthController>();
+
+            if (healthController != null)
+            {
+                healthController.TakeDamage(damage);
+            }
+
+            if (hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForceAtPosition(power * Time.deltaTime * nextRay.direction / probeCount, hit.point);
+                var bombScript = hit.rigidbody.GetComponent<Bomb>();
+                if (bombScript != null)
+                {
+                    bombScript.StartExplosion();
+                }
+            }
+        }
+    }
     /*    private void Update()
         {
             if (explosionTime > 0)
