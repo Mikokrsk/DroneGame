@@ -53,7 +53,7 @@ public class Rocket : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         if (_isActive)
         {
