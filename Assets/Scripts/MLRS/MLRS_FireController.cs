@@ -2,14 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class MLRS_FireController : MonoBehaviour
 {
-    public bool bolean;
+    public bool isFire;
     public bool spawnRocket;
+
     [SerializeField] private List<Transform> _rocketPositions;
-    //[SerializeField] private Dictionary<Transform, Rocket> _rocketControllers;
     [SerializeField] private List<RocketController> _rocketControllers;
     [SerializeField] private GameObject _rocketPref;
     [SerializeField] private int _rocketCount;
@@ -39,9 +40,9 @@ public class MLRS_FireController : MonoBehaviour
 
     private void Update()
     {
-        if (bolean)
+        if (isFire)
         {
-            bolean = false;
+            isFire = false;
 
             RocketLaunch();
         }
@@ -57,13 +58,6 @@ public class MLRS_FireController : MonoBehaviour
 
     public void RocketLaunch()
     {
-        /*        var rocketController = _rocketControllers.Find(x => x.rocket != null);
-                if (rocketController.rocket != null)
-                {
-                    rocketController.rocket.transform.SetParent(null);
-                    _rocketControllers.
-                    rocketController.rocket.StartExplosion();
-                }*/
         for (int i = 0; i < _rocketControllers.Count; i++)
         {
             var rocket = _rocketControllers[i].rocket;
@@ -71,7 +65,6 @@ public class MLRS_FireController : MonoBehaviour
             {
                 rocket.transform.SetParent(null);
                 rocket.StartExplosion();
-                //_rocketControllers[i].SetRocket(null);
                 UpdateAmmo();
                 break;
             }
@@ -93,6 +86,7 @@ public class MLRS_FireController : MonoBehaviour
         }
         return compleate;
     }
+
     [Serializable]
     struct RocketController
     {
