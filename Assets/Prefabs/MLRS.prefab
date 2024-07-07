@@ -2744,7 +2744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50c552fd87121040b93e06e7cfa4b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isActive: 1
+  _isActive: 0
   basePlatform: {fileID: 1903420867837153377}
   turret: {fileID: 680762423574454153}
   rotationSpeedY: 10
@@ -3036,6 +3036,7 @@ GameObject:
   - component: {fileID: 6692748344937405369}
   - component: {fileID: 5738214501402389387}
   - component: {fileID: 8700430380193851243}
+  - component: {fileID: 9098589209601134206}
   m_Layer: 0
   m_Name: MLRS
   m_TagString: Untagged
@@ -3106,6 +3107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388861aac05475d4ba87e47b0d3ba6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   wheels: []
   rb: {fileID: 5738214501402389387}
   maxMotorTorque: 10000
@@ -3122,6 +3124,39 @@ MonoBehaviour:
   moveLeft: 97
   moveBack: 115
   stopMove: 32
+--- !u!114 &9098589209601134206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3995237140978100344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6353be469b0781640b32ed07ee1d0e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rocketSystemManager: {fileID: 0}
+  _turretMoveController: {fileID: 0}
+  _carMoveController: {fileID: 0}
+  _currentMode: 0
+  _switchMode:
+    m_Name: Switch Mode
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 755e0da2-f733-4020-baab-57d73ab9db4c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: f362da09-d9b5-433a-83ce-faa5e876bbd0
+      m_Path: <Keyboard>/n
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Switch Mode
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &4063359852993368014
 GameObject:
   m_ObjectHideFlags: 0
@@ -5866,7 +5901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRocket: 0
-  _isActive: 1
+  _isActive: 0
   _fireAction:
     m_Name: Fire
     m_Type: 0

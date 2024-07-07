@@ -34,6 +34,15 @@ public class RocketSystemManager : MonoBehaviour
         GetLoadedRockets();
     }
 
+    public void SetActive(bool active)
+    {
+        _isActive = active;
+    }
+    public bool GetActive()
+    {
+        return _isActive;
+    }
+
     private void GetLoadedRockets()
     {
         _rocketControllers.Clear();

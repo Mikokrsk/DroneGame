@@ -365,6 +365,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4862452146103983662, guid: 8036e660bcc07bf4b9ae64c95c0fcbde, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7242477364121240159, guid: 8036e660bcc07bf4b9ae64c95c0fcbde, type: 3}
       propertyPath: m_Name
       value: Drone

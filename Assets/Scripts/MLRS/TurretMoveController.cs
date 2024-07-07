@@ -42,6 +42,16 @@ public class TurretMoveController : MonoBehaviour
         }
     }
 
+
+    public void SetActive(bool active)
+    {
+        _isActive = active;
+    }
+    public bool GetActive()
+    {
+        return _isActive;
+    }
+
     private void EnableTurretControl()
     {
         _moveAction.Enable();

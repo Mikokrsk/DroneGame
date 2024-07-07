@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CarMoveController : MonoBehaviour
 {
+    [SerializeField] private bool _isActive;
     [SerializeField] private Wheel[] wheels;
 
     [SerializeField] private Rigidbody rb;
@@ -37,10 +38,27 @@ public class CarMoveController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateSpeedometer();
-        CheckSteeringInput();
-        CheckGasPedalInput();
+        if (_isActive)
+        {
+            UpdateSpeedometer();
+            CheckSteeringInput();
+            CheckGasPedalInput();
+        }
         ApplyBrakes();
+    }
+
+    public void SetActive(bool active)
+    {
+        _isActive = active;
+    }
+    public bool GetActive()
+    {
+        return _isActive;
+    }
+
+    public float GetCurrentSpeed()
+    {
+        return currentSpeed;
     }
 
     private void UpdateSpeedometer()
