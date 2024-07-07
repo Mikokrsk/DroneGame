@@ -18,6 +18,11 @@ public class RocketSystemManager : MonoBehaviour
     [SerializeField] private GameObject _rocketPref;
     [SerializeField] private int _rocketCount;
 
+    [SerializeField] private Transform _fuseCentrePosition;
+    [SerializeField] private Vector3 _fuseSize;
+    [SerializeField] private Color _gizmosColor;
+    [SerializeField] private Collider[] _colliders;
+
     private void Awake()
     {
         _fireAction.Enable();
@@ -67,7 +72,7 @@ public class RocketSystemManager : MonoBehaviour
 
     public void RocketLaunch()
     {
-        if (_rocketCount > 0)
+        if (_rocketCount > 0 && Fuse())
         {
             for (int i = 0; i < _rocketControllers.Count; i++)
             {
@@ -97,6 +102,22 @@ public class RocketSystemManager : MonoBehaviour
         return compleate;
     }
 
+    private bool Fuse()
+    {
+        var colliders = Physics.OverlapBox(_fuseCentrePosition.transform.position, _fuseSize / 2, _fuseCentrePosition.transform.rotation);
+        if (colliders.Count() > 0)
+        {
+            foreach (var collider in colliders)
+            {
+                if (collider.isTrigger == false)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     [Serializable]
     struct RocketController
     {
@@ -118,5 +139,12 @@ public class RocketSystemManager : MonoBehaviour
     private void OnDestroy()
     {
         _fireAction.Disable();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = _gizmosColor;
+        Gizmos.matrix = Matrix4x4.TRS(_fuseCentrePosition.transform.position, _fuseCentrePosition.transform.rotation, _fuseSize);
+        Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
     }
 }
