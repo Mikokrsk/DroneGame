@@ -4,25 +4,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class MLRS_FireController : MonoBehaviour
+public class RocketSystemManager : MonoBehaviour
 {
-    public bool isFire;
     public bool spawnRocket;
+    [SerializeField] private bool _isActive;
+
+    [SerializeField] private InputAction _fireAction;
 
     [SerializeField] private List<Transform> _rocketPositions;
     [SerializeField] private List<RocketController> _rocketControllers;
     [SerializeField] private GameObject _rocketPref;
     [SerializeField] private int _rocketCount;
 
+    private void Awake()
+    {
+        _fireAction.Enable();
+    }
+
     private void Start()
     {
         _rocketControllers = new List<RocketController>();
-        UpdateAmmo();
-        UpdateCountAmmo();
+        GetLoadedRockets();
     }
 
-    private void UpdateAmmo()
+    private void GetLoadedRockets()
     {
         _rocketControllers.Clear();
         foreach (var rocketPosition in _rocketPositions)
@@ -31,47 +38,51 @@ public class MLRS_FireController : MonoBehaviour
             var rocketController = new RocketController(rocketPosition, rocket);
             _rocketControllers.Add(rocketController);
         }
+        GetLoadedRocketsCount();
     }
 
-    private void UpdateCountAmmo()
+    private void GetLoadedRocketsCount()
     {
         _rocketCount = _rocketControllers.Count(x => x.rocket != null);
     }
 
     private void Update()
     {
-        if (isFire)
-        {
-            isFire = false;
-
-            RocketLaunch();
-        }
-
         if (spawnRocket)
         {
             spawnRocket = false;
 
-            SpawnRocket();
+            ReloadRockets();
         }
-        UpdateCountAmmo();
+        if (_isActive)
+        {
+            if (_fireAction.triggered)
+            {
+                RocketLaunch();
+            }
+        }
+
+        GetLoadedRockets();
     }
 
     public void RocketLaunch()
     {
-        for (int i = 0; i < _rocketControllers.Count; i++)
+        if (_rocketCount > 0)
         {
-            var rocket = _rocketControllers[i].rocket;
-            if (rocket != null)
+            for (int i = 0; i < _rocketControllers.Count; i++)
             {
-                rocket.transform.SetParent(null);
-                rocket.StartExplosion();
-                UpdateAmmo();
-                break;
+                var rocket = _rocketControllers[i].rocket;
+                if (rocket != null)
+                {
+                    rocket.transform.SetParent(null);
+                    rocket.StartExplosion();
+                    break;
+                }
             }
         }
     }
 
-    public bool SpawnRocket()
+    public bool ReloadRockets()
     {
         var compleate = false;
 
@@ -80,7 +91,6 @@ public class MLRS_FireController : MonoBehaviour
             if (_rocketControllers[i].rocket == null)
             {
                 Instantiate(_rocketPref, _rocketControllers[i].rocketPosition).GetComponent<Rocket>();
-                UpdateAmmo();
                 break;
             }
         }
@@ -103,5 +113,10 @@ public class MLRS_FireController : MonoBehaviour
         {
             this.rocket = rocket;
         }
+    }
+
+    private void OnDestroy()
+    {
+        _fireAction.Disable();
     }
 }

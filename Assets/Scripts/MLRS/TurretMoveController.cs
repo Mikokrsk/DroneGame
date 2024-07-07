@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TurretController  : MonoBehaviour
+public class TurretMoveController : MonoBehaviour
 {
+    [SerializeField] private bool _isActive;
+
     [SerializeField] private Transform basePlatform;
     [SerializeField] private Transform turret;
 
@@ -18,7 +21,7 @@ public class TurretController  : MonoBehaviour
     [SerializeField] private InputAction _moveAction;
 
     [SerializeField] private float _foldBatterySpeed;
-    [SerializeField] private bool _isActive;
+
     [SerializeField] private Vector3 _endBaseRotation;
     [SerializeField] private Vector3 _endTurretRotation;
 
@@ -31,7 +34,6 @@ public class TurretController  : MonoBehaviour
     {
         if (_isActive)
         {
-
             HandleTurretMovement();
         }
         else
@@ -44,6 +46,7 @@ public class TurretController  : MonoBehaviour
     {
         _moveAction.Enable();
     }
+
     private void DisableTurretControl()
     {
         _moveAction.Disable();
