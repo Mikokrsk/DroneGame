@@ -58,7 +58,7 @@ public class MLRSModeController : MonoBehaviour
 
     private void SetDriveMode(bool active)
     {
-        _carMoveController.SetActive(active);
+        _carMoveController.wheeledVehicleMoveController.SetActive(active);
     }
 
     enum MLRSMode
