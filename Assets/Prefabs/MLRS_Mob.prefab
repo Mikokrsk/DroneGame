@@ -2074,7 +2074,6 @@ GameObject:
   - component: {fileID: 4612527375870430461}
   - component: {fileID: 2774110907279123952}
   - component: {fileID: 5500048453986785278}
-  - component: {fileID: 8146443584142579635}
   m_Layer: 0
   m_Name: Rotation_Horizontal
   m_TagString: Untagged
@@ -2172,77 +2171,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5822375455501876732, guid: d3a5a627e1edeac44b2af0f0ee98c4b4, type: 3}
---- !u!114 &8146443584142579635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2442398193839873469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d50c552fd87121040b93e06e7cfa4b04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isActive: 0
-  basePlatform: {fileID: 4249988183494667399}
-  turret: {fileID: 8857287683849703769}
-  rotationSpeedY: 10
-  rotationSpeedX: 10
-  maxRotationX: 45
-  minRotationX: 0
-  _moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: a1207f71-5095-42dc-b91b-9923612787f1
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 2D Vector
-      m_Id: fc237a28-c56f-4ab5-8ccb-527f68b85f02
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 4
-    - m_Name: up
-      m_Id: 0c8ef13d-9622-4c55-ab56-84d95f345d83
-      m_Path: <Keyboard>/upArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: down
-      m_Id: e12d178d-858c-474c-8e71-0de83a5ce2b6
-      m_Path: <Keyboard>/downArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: left
-      m_Id: 241986b1-606b-4bd5-ab61-bf140a36f952
-      m_Path: <Keyboard>/leftArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: right
-      m_Id: 66730392-a4b5-4c00-9c77-5e4a91ca8a47
-      m_Path: <Keyboard>/rightArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    m_Flags: 0
-  _foldBatterySpeed: 2
-  _endBaseRotation: {x: 0, y: 0, z: 0}
-  _endTurretRotation: {x: 0, y: 180, z: 0}
 --- !u!1 &2449555050968810754
 GameObject:
   m_ObjectHideFlags: 0
@@ -5683,7 +5611,6 @@ GameObject:
   - component: {fileID: 2487281829443002032}
   - component: {fileID: 4964526455278538656}
   - component: {fileID: 8656585426677783359}
-  - component: {fileID: 3843727240466459097}
   - component: {fileID: 4038030323555703159}
   - component: {fileID: 6618278593287078867}
   m_Layer: 0
@@ -5756,7 +5683,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6353be469b0781640b32ed07ee1d0e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rocketSystemManager: {fileID: 0}
   _turretMoveController: {fileID: 0}
   _carMoveController: {fileID: 0}
   _currentMode: 0
@@ -5777,30 +5703,6 @@ MonoBehaviour:
       m_Action: Switch Mode
       m_Flags: 0
     m_Flags: 0
---- !u!114 &3843727240466459097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8290980946066157694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24fade3d8d75a934ab59cb592c2b08a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isActive: 1
-  wheels: []
-  rb: {fileID: 4964526455278538656}
-  maxMotorTorque: 10000
-  maxBrakeTorque: 2000
-  maxSpeed: 20
-  maxSteeringAngle: 30
-  currentMotorTorque: 0
-  currentBrakeTorque: 0
-  currentSpeed: 0
-  currentSteeringRange: 30
-  centreOfGravityOffset: -1
 --- !u!114 &4038030323555703159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5826,7 +5728,7 @@ MonoBehaviour:
   currentSteeringAngle: 0
   centreOfGravityOffset: -1
   targetSteerAngle: 0
-  duration: 0.25
+  steerDuration: 2
   targetWheelTorque: 0
   setWheelTorqueDuration: 5
 --- !u!114 &6618278593287078867

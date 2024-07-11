@@ -1672,6 +1672,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83322464}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &111509298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7415627325410360682, guid: c7e8b2509a909744b98b49f6ebc0115a, type: 3}
+  m_PrefabInstance: {fileID: 262884208}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb4b410fd20c049b86263ec75f02ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &114653785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,6 +1953,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124276433}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &145305331 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 680762423574454153, guid: c7e8b2509a909744b98b49f6ebc0115a, type: 3}
+  m_PrefabInstance: {fileID: 262884208}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &163221382
 GameObject:
   m_ObjectHideFlags: 0
@@ -4519,6 +4535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MLRS
       objectReference: {fileID: 0}
+    - target: {fileID: 3995237140978100344, guid: c7e8b2509a909744b98b49f6ebc0115a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6692748344937405369, guid: c7e8b2509a909744b98b49f6ebc0115a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4571,13 +4591,17 @@ PrefabInstance:
       propertyPath: _wheeledVehicleMoveController
       value: 
       objectReference: {fileID: 760819970}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7792210263129636336, guid: c7e8b2509a909744b98b49f6ebc0115a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3995237140978100344, guid: c7e8b2509a909744b98b49f6ebc0115a, type: 3}
       insertIndex: 2
       addedObject: {fileID: 760819970}
+    - targetCorrespondingSourceObject: {fileID: 3995237140978100344, guid: c7e8b2509a909744b98b49f6ebc0115a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 760819974}
   m_SourcePrefab: {fileID: 100100000, guid: c7e8b2509a909744b98b49f6ebc0115a, type: 3}
 --- !u!1 &288545535
 GameObject:
@@ -12088,6 +12112,78 @@ MonoBehaviour:
   steerDuration: 2
   targetWheelTorque: 0
   setWheelTorqueDuration: 5
+--- !u!114 &760819974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760819965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50c552fd87121040b93e06e7cfa4b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isActive: 0
+  _basePlatform: {fileID: 1729422660}
+  _turret: {fileID: 145305331}
+  _rotationSpeedY: 10
+  _rotationSpeedX: 10
+  _maxRotationX: 45
+  _minRotationX: -5
+  _foldTurretSpeed: 0
+  _endBaseRotation: {x: 0, y: 0, z: 0}
+  _endTurretRotation: {x: 0, y: 180, z: 0}
+  _rocketSystemManager: {fileID: 111509298}
+  _moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 53bc6f20-a923-46ae-a5aa-8b1c710537d0
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: 325e8fe1-fb82-4a1d-9663-0209a35311b8
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: up
+      m_Id: affcb6ab-f6dc-48dc-b162-7368b53ac763
+      m_Path: <Keyboard>/upArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 1983d524-2169-4c41-80f5-7baafcccfe6b
+      m_Path: <Keyboard>/downArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 7d5cc605-eb2f-4aff-aadf-a1876a0c2c0c
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: right
+      m_Id: a337a232-05bb-4d79-9557-c2ea0e5a36ad
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    m_Flags: 0
 --- !u!1 &773417617
 GameObject:
   m_ObjectHideFlags: 0
@@ -31875,6 +31971,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718210731}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1729422660 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1903420867837153377, guid: c7e8b2509a909744b98b49f6ebc0115a, type: 3}
+  m_PrefabInstance: {fileID: 262884208}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1729770283
 GameObject:
   m_ObjectHideFlags: 0
@@ -38550,6 +38651,10 @@ PrefabInstance:
     - target: {fileID: 8290980946066157694, guid: 5b0a321ecca9aa545a0bdcce726531b1, type: 3}
       propertyPath: m_Name
       value: MLRS_Mob
+      objectReference: {fileID: 0}
+    - target: {fileID: 8656585426677783359, guid: 5b0a321ecca9aa545a0bdcce726531b1, type: 3}
+      propertyPath: _turretMoveController
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

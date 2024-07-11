@@ -6,8 +6,7 @@ using UnityEngine.InputSystem;
 
 public class MLRSModeController : MonoBehaviour
 {
-    [SerializeField] private RocketSystemManager _rocketSystemManager;
-    [SerializeField] private TurretMoveController _turretMoveController;
+    [SerializeField] private MLRSTurretController _turretMoveController;
     [SerializeField] private CarMoveController _carMoveController;
 
     [SerializeField] private MLRSMode _currentMode;
@@ -16,8 +15,7 @@ public class MLRSModeController : MonoBehaviour
 
     private void Awake()
     {
-        _rocketSystemManager = GetComponentInChildren<RocketSystemManager>();
-        _turretMoveController = GetComponentInChildren<TurretMoveController>();
+        _turretMoveController = GetComponentInChildren<MLRSTurretController>();
         _carMoveController = GetComponentInChildren<CarMoveController>();
 
         _switchMode.Enable();
@@ -52,7 +50,6 @@ public class MLRSModeController : MonoBehaviour
 
     private void SetFireMode(bool active)
     {
-        _rocketSystemManager.SetActive(active);
         _turretMoveController.SetActive(active);
     }
 

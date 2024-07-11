@@ -30,7 +30,7 @@ public class CarNavigationSystem : MonoBehaviour
 
     private void Update()
     {
-        if (_targetPosition == null)
+        if (_targetPosition == null && _wheeledVehicleMoveController.GetActive())
         {
             StopCar();
             return;
