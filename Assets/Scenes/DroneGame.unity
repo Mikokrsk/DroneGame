@@ -4564,6 +4564,10 @@ PrefabInstance:
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8700430380193851243, guid: c7e8b2509a909744b98b49f6ebc0115a, type: 3}
+      propertyPath: wheeledVehicleMoveController
+      value: 
+      objectReference: {fileID: 760819970}
+    - target: {fileID: 8700430380193851243, guid: c7e8b2509a909744b98b49f6ebc0115a, type: 3}
       propertyPath: _wheeledVehicleMoveController
       value: 
       objectReference: {fileID: 760819970}
@@ -12081,7 +12085,7 @@ MonoBehaviour:
   currentSteeringAngle: 0
   centreOfGravityOffset: -1
   targetSteerAngle: 0
-  duration: 0.25
+  steerDuration: 2
   targetWheelTorque: 0
   setWheelTorqueDuration: 5
 --- !u!1 &773417617
